@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Navbar</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      background: #0a3d62;
+      color: #fff;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .menu li {
+      position: relative;
+    }
+
+    .menu a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 35px;
+      background: #0a3d62;
+      padding: 10px 0;
+      list-style: none;
+      min-width: 150px;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .dropdown li {
+      padding: 8px 20px;
+    }
+
+    .dropdown li a {
+      display: block;
+      color: #fff;
+    }
+
+    .menu li:hover .dropdown {
+      display: block;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .toggle-btn div {
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      margin: 5px 0;
+      transition: 0.3s;
+    }
+
+    /* Mobile View */
+    @media (max-width: 768px) {
+      .menu {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #0a3d62;
+        flex-direction: column;
+        text-align: left;
+        padding: 20px 0;
+        display: none;
+      }
+
+      .menu.active {
+        display: block;
+      }
+
+      .menu li {
+        padding: 15px 20px;
+      }
+
+      .menu li:hover .dropdown {
+        position: static;
+        box-shadow: none;
+      }
+
+      .dropdown {
+        background: #07436f;
+        padding-left: 20px;
+      }
+
+      .toggle-btn {
+        display: flex;
+      }
+
+      /* Cross Animation */
+      .toggle-btn.active .line1 {
+        transform: rotate(45deg) translate(5px, 6px);
+      }
+
+      .toggle-btn.active .line2 {
+        opacity: 0;
+      }
+
+      .toggle-btn.active .line3 {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">My Website</div>
+
+    <ul class="menu" id="menu">
+      <li><a href="#">Home</a></li>
+
+      <li>
+        <a href="#">Service ▾</a>
+        <ul class="dropdown">
+          <li><a href="#">Home Delivery</a></li>
+          <li><a href="#">Package</a></li>
+          <li><a href="#">Transport</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Delivery</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+
+    <div class="toggle-btn" id="toggleBtn">
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
+    </div>
+  </nav>
+
+  <script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const menu = document.getElementById("menu");
+
+    toggleBtn.addEventListener("click", () => {
+      menu.classList.toggle("active");
+      toggleBtn.classList.toggle("active");
+    });
+  </script>
+
+</body>
+</html>
